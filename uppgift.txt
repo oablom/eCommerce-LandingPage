@@ -1,0 +1,33 @@
+## **Uppgifter**
+
+1. Lägg till minst de element som finns i prototypen ovan annars är det helt fria händer gällande design och innehåll. Impress me!  Korrekt semantik vill också jag se.
+
+2. Hämta innehåll med fetch API:t.  (använd async/await eller .then chaining)
+
+3. Varje produkt ska renderas med minst **title, description, image, price, rating**.
+
+4. När man klickar på en produkt så ska produkten öppnas i egen modal med mer information.
+
+5. När man klickar på en produktbild så ska varan läggas till i ens cart(varukog). Samtidigt skall varukorgen rita ut den tillagda produkten (Använd Localstorage)
+
+6. Använd objektorienterad approach för hantering utav er cart. (class Cart)
+
+7. Lägg funktionalitet så att man lägger till varan i varukorgen genom att klicka på en "Köp" knapp.
+
+8. Lägg till ett input/select fält och en knapp högst uppe på sidan. I denna ska användaren kunna välja ibland kategorierna. När användaren trycker på knappen ska sidan filtrera produkterna så baserat på kategorin. (Här kan ni filterera befintliga produkter med betfintligt data eller faktiskt använda endpointen som hämtar specifik category)
+
+9. Lägg till ta bort knapp för varje cart item, som i sin tur skall tar bort själva element ur cart-listan.
+
+**Vad ni bör använda er utav för att klara uppgiften hela vägen till VG:**
+
+- HTML
+- CSS/CSS eller Bootstrap
+- Variabler
+- Funktioner
+- get selektorer ( querySelector, getElementbyId)
+- createElement
+- Event listeners / onclick bindings
+- For loopar eller array som filter, forEach
+- fetch
+- localstorage
+- Class (OOP)
