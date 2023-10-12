@@ -45,9 +45,9 @@ function productsArrayRender(items) {
     let article = document.createElement("article");
     article.innerHTML =
       `<h3>Title: ${items[i].title}</h3>` +
-      `<h3>Price: ${items[i].price}$</h3>` +
-      `<h3>Rating: ${items[i].rating}</h3>` +
-      `<img src="${items[i].thumbnail}" alt="">`;
+      `<p>Price: ${items[i].price}$</p>` +
+      `<p>Rating: ${items[i].rating}</p>` +
+      `<img src="${items[i].thumbnail}" alt="Image of ${items[i].title}">`;
 
     articleContainer.appendChild(article);
     //
@@ -60,8 +60,8 @@ function productsArrayRender(items) {
     article.setAttribute("class", "article");
 
     //Event listener för modal:
-    article.setAttribute("data-toggle", "modal");
-    article.setAttribute("data-target", "#productModal");
+    article.setAttribute("data-bs-toggle", "modal");
+    article.setAttribute("data-bs-target", "#productModal");
   }
   articleEventListener();
   console.log(productsArray);
@@ -86,10 +86,10 @@ function articleEventListener() {
       document.getElementById("productModalLabel").textContent =
         currentArticle.name;
       document.querySelector("#productModal .modal-body").innerHTML =
-        `<h3>Description: ${currentArticle.description}</h3>` +
-        `<h3>Price: ${currentArticle.price}$</h3>` +
-        `<h3>Rating: ${currentArticle.rating}</h3>` +
-        `<img src="${currentArticle.img}" alt="">`;
+        `<p>Description: ${currentArticle.description}</p>` +
+        `<p>Price: ${currentArticle.price}$</p>` +
+        `<p>Rating: ${currentArticle.rating}</p>` +
+        `<img src="${currentArticle.img}" alt="Image of ${currentArticle.name}">`;
     });
   }
   addToCartBtn.addEventListener("click", function () {
@@ -144,9 +144,11 @@ class ShoppingCart {
       let article = document.createElement("article");
       article.innerHTML =
         `<h3>Title: ${cartProducts.name}</h3>` +
-        `<h3>Price: ${cartProducts.price}$</h3>` +
-        `<h3>quantity: ${cartProducts.quantity}</h3>` +
-        `<img src="${cartProducts.productImg}" alt="">`;
+        `<p>Price: ${cartProducts.price}$</p>` +
+        `<p>quantity: ${cartProducts.quantity}</p>` +
+        `<img src="${cartProducts.productImg}" alt="Image of ${cartProducts.name}">`;
+
+      article.setAttribute("class", "cart-article");
 
       shoppingCartBody.appendChild(article);
     }
