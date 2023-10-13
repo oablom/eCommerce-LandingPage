@@ -16,6 +16,16 @@ Använd localstorage for att lägga till och ta bort
 
 //filter som filtrerar kategorier
 
+//<navbar>
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".nav-links");
+const links = document.querySelectorAll(".nav-links li");
+
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
+//</navbar>
+
 // const productsUrl = "https://fakestoreapi.com/products";
 // const productsUrl =
 const productsUrl = "https://dummyjson.com/products";
@@ -44,7 +54,7 @@ function productsArrayRender(items) {
     //
     let article = document.createElement("article");
     article.innerHTML =
-      `<h3>Title: ${items[i].title}</h3>` +
+      `<h3>${items[i].title}</h3>` +
       `<p>Price: ${items[i].price}$</p>` +
       `<p>Rating: ${items[i].rating}</p>` +
       `<img src="${items[i].thumbnail}" alt="Image of ${items[i].title}">`;
@@ -114,6 +124,8 @@ shoppingCartBtn.addEventListener("click", function () {
 class ShoppingCart {
   constructor() {
     this.cart = JSON.parse(localStorage.getItem("cart")) || [];
+    this.cartQuantity = parseInt(localStorage.getItem("cartQuantity")) || 0;
+    // this.cartQuantity= JSON.parse(localStorage.getItem("cartQuantity")) || [];
   }
 
   addToCart(productId, productName, productPrice, productImg) {
@@ -131,6 +143,7 @@ class ShoppingCart {
       });
     }
     this.saveCart();
+    this.cartItemsNumber();
   }
 
   showCart() {
@@ -143,29 +156,56 @@ class ShoppingCart {
       console.log(cartProducts);
       let article = document.createElement("article");
       article.innerHTML =
-        `<h3>Title: ${cartProducts.name}</h3>` +
+        `<img src="${cartProducts.productImg}" alt="Image of ${cartProducts.name}">` +
+        `<h3>${cartProducts.name}</h3>` +
         `<p>Price: ${cartProducts.price}$</p>` +
-        `<p>quantity: ${cartProducts.quantity}</p>` +
-        `<img src="${cartProducts.productImg}" alt="Image of ${cartProducts.name}">`;
+        `<p>quantity: ${cartProducts.quantity}</p>`;
 
       article.setAttribute("class", "cart-article");
 
       shoppingCartBody.appendChild(article);
     }
+    this.cartItemsNumber();
   }
 
   saveCart() {
     localStorage.setItem("cart", JSON.stringify(this.cart));
   }
 
+  saveNumber() {
+    localStorage.setItem("cartQuantity", this.cartQuantity);
+  }
+
   removeItem() {
     this.cart;
+    this.cartItemsNumber();
+  }
+  cartItemsNumber() {
+    let cartItemsNumberInt = 0;
+    for (let i = 0; i < myCart.cart.length; i++) {
+      cartItemsNumberInt += myCart.cart[i].quantity;
+    }
+    console.log(cartItemsNumberInt);
+    this.cartQuantity = cartItemsNumberInt;
+    this.saveNumber();
+
+    let numberOfItems = document.getElementById("number-of-items");
+    if (this.cartQuantity > 0) {
+      numberOfItems.innerHTML = this.cartQuantity;
+    } else {
+      numberOfItems.innerHTML = "";
+    }
+    openShoppingCartBtn.appendChild(numberOfItems);
+    console.log(this.cartQuantity);
   }
 
   clearCart() {
     this.cart = [];
+    localStorage.removeItem("cartQuantity");
     localStorage.removeItem("cart");
     localStorage.clear();
+    this.showCart();
+    this.cartItemsNumber();
 
     //localStorage.removeItem("cart");
   }
@@ -187,3 +227,6 @@ openShoppingCartBtn.addEventListener("click", function () {
 });
 
 /* ShoppingCart */
+
+// const nav = document.querySelector("nav");
+myCart.cartItemsNumber();
