@@ -3,9 +3,11 @@ nav {
   background-color: lightblue;
   position: fixed;
   width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+
   i {
     position: fixed;
-    z-index: 3;
+
     transform: scale(2);
     right: 5%;
     top: 5%;
@@ -24,7 +26,7 @@ header .logo {
   display: flex;
   list-style: none;
   width: 100%;
-  background-color: lightcoral;
+  background-color: lightblue;
   height: 100%;
   justify-content: space-around;
   align-items: flex-end;

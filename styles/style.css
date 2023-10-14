@@ -3,10 +3,10 @@ nav {
   background-color: lightblue;
   position: fixed;
   width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
 }
 nav i {
   position: fixed;
-  z-index: 3;
   transform: scale(2);
   right: 5%;
   top: 5%;
@@ -23,7 +23,7 @@ header .logo {
   display: flex;
   list-style: none;
   width: 100%;
-  background-color: lightcoral;
+  background-color: lightblue;
   height: 100%;
   justify-content: space-around;
   align-items: flex-end;
@@ -127,6 +127,28 @@ header .logo {
   min-width: 50px;
   max-width: 100%;
 }
+.cart-article .button-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50px;
+}
+.cart-article .button-div button {
+  background: none;
+  height: 15px;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 20px;
+  transform: translateY(-8px);
+}
+.cart-article .button-div .button1 {
+  grid-column-start: 5;
+  grid-row-start: 1;
+}
+.cart-article .button-div p {
+  margin-bottom: 0px;
+}
 
 * {
   box-sizing: border-box;
@@ -139,7 +161,8 @@ body {
 }
 
 main {
-  padding-top: 10vh;
+  padding-top: 15vh;
+  background-color: lightgrey;
 }
 
 #article-container {
@@ -153,18 +176,19 @@ main {
 
 .article {
   padding: 10px;
-  background-color: gray;
+  background-color: lightblue;
   border-radius: 10px;
   width: 300px;
   height: 100%;
   margin-bottom: 50px;
   overflow: hidden;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
   cursor: pointer;
 }
 .article:hover {
   transform: scale(1.1);
-  transition: 0.1s ease-in;
+  transition: 0.15s ease-in;
+  z-index: 0;
 }
 .article img {
   width: 100%;
@@ -175,6 +199,9 @@ main {
   padding-bottom: 10px;
 }
 
+.modal-content {
+  transition: 1s ease-in;
+}
 .modal-content button {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
@@ -186,4 +213,14 @@ main {
 .modal-content img {
   max-width: 100%;
   border-radius: 5px;
+  transition: 2s ease-in;
+}
+
+.modal.fade {
+  transition: 0.2s ease-in;
+  transform: translateY(100%);
+}
+
+.modal.show {
+  transform: translateY(0);
 }/*# sourceMappingURL=style.css.map */

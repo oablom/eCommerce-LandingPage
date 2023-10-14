@@ -155,15 +155,25 @@ class ShoppingCart {
       let cartProducts = this.cart[i];
       console.log(cartProducts);
       let article = document.createElement("article");
+      let removeQuantityBtn = `<button id="remove-quantity-btn${i} " class="button1">-</button>`;
+      let addQuantityBtn = `<button id="add-quantity-btn${i} " class="button2">+</button>`;
+
       article.innerHTML =
         `<img src="${cartProducts.productImg}" alt="Image of ${cartProducts.name}">` +
         `<h3>${cartProducts.name}</h3>` +
         `<p>Price: ${cartProducts.price}$</p>` +
-        `<p>quantity: ${cartProducts.quantity}</p>`;
+        `<div class="button-div"> ${removeQuantityBtn} 
+        <p>  ${cartProducts.quantity}</p> ${addQuantityBtn}</div>`;
 
       article.setAttribute("class", "cart-article");
 
       shoppingCartBody.appendChild(article);
+      //<Gör om till en funktion>
+      const addQuantityBtncMinus = article.querySelector(".button1");
+      const addQuantityBtncPlus = article.querySelector(".button2");
+      addQuantityBtncMinus.addEventListener("click", () => {});
+      addQuantityBtncPlus.addEventListener("click", () => {});
+      //</Gör om till en funktion>
     }
     this.cartItemsNumber();
   }

@@ -8,11 +8,35 @@
     display: flex;
     align-items: center;
   }
+
   img {
     position: relative;
     grid-column-start: 1;
     grid-column-end: 3;
     min-width: 50px;
     max-width: 100%;
+  }
+
+  .button-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50px;
+    button {
+      background: none;
+      height: 15px;
+      border: none;
+      box-shadow: none;
+      cursor: pointer;
+      font-size: 20px;
+      transform: translateY(-8px);
+    }
+    .button1 {
+      grid-column-start: 5;
+      grid-row-start: 1;
+    }
+    p {
+      margin-bottom: 0px;
+    }
   }
 }
