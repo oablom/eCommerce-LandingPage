@@ -21,9 +21,14 @@ main {
   justify-content: center;
   gap: 60px;
   background-color: rgb(238, 246, 248);
-
-  padding: 20px;
+  padding: 20px 3% 20px 3%;
   flex-wrap: wrap;
+}
+
+@media screen and (min-width: 1300px) {
+  #article-container {
+    padding: 20px 10% 20px 10%;
+  }
 }
 
 .article {

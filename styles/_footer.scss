@@ -34,6 +34,7 @@ footer {
 
       .socialmedia-icons {
         bottom: 8%;
+        left: 10%;
         :hover {
           transform: translateY(-5px);
         }
@@ -58,12 +59,23 @@ footer {
 }
 
 @media screen and (max-width: 850px) {
-  footer .footer-content .media-menu .menu {
-    width: 30%;
-    min-width: 100px;
+  footer .footer-content .media-menu {
+    .menu {
+      width: 30%;
+      min-width: 100px;
 
-    li a i span {
-      display: none;
+      li a i span {
+        display: none;
+      }
+    }
+  }
+}
+@media screen and (max-width: 720px) {
+  footer .footer-content .media-menu {
+    .socialmedia-icons {
+      padding-left: 0;
+      left: 3%;
+      min-width: 150px;
     }
   }
 }
@@ -88,7 +100,10 @@ footer {
       color: black;
       transition: 0.5s;
       :hover {
-        transform: translateY(-5px);
+        font-weight: bold;
+
+        text-decoration: underline;
+        transform: translateY(-3px);
       }
     }
   }
@@ -116,6 +131,7 @@ footer .copyright-container {
   height: 100%;
   width: 100vw;
   transform: translateY(-100px);
+
   svg {
     height: 100%;
     width: 100vw;
