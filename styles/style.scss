@@ -1,5 +1,6 @@
 @import "navbar";
 @import "shoppingCart";
+@import "footer";
 
 * {
   box-sizing: border-box;
@@ -12,14 +13,14 @@ body {
 }
 main {
   padding-top: 15vh;
-  background-color: lightgrey;
+  background-color: rgb(238, 246, 248);
 }
 
 #article-container {
   display: flex;
   justify-content: center;
   gap: 60px;
-  background-color: lightgrey;
+  background-color: rgb(238, 246, 248);
 
   padding: 20px;
   flex-wrap: wrap;
@@ -45,6 +46,7 @@ main {
   img {
     width: 100%;
     height: 200px;
+    border-radius: 2px;
   }
 }
 

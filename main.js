@@ -114,12 +114,6 @@ function articleEventListener() {
   });
 }
 
-let shoppingCartBtn = document.getElementById("shoppingCartBtn");
-
-shoppingCartBtn.addEventListener("click", function () {
-  myCart.showCart();
-});
-
 /* ShoppingCart */
 class ShoppingCart {
   constructor() {
@@ -138,12 +132,25 @@ class ShoppingCart {
         id: productId,
         name: productName,
         price: productPrice,
-        productImg,
+        img: productImg,
         quantity: 1,
       });
     }
     this.saveCart();
-    this.cartItemsNumber();
+    this.cartItemsQuantity();
+  }
+
+  removeItemFromCart(productId) {
+    let productInCartIndex = this.cart.findIndex(
+      (item) => item.id === productId
+    );
+
+    if (this.cart[productInCartIndex].quantity > 1) {
+      this.cart[productInCartIndex].quantity--;
+    } else {
+      let updatedCart = this.cart.filter((item) => item.id !== productId);
+      this.cart = updatedCart;
+    }
   }
 
   showCart() {
@@ -155,11 +162,12 @@ class ShoppingCart {
       let cartProducts = this.cart[i];
       console.log(cartProducts);
       let article = document.createElement("article");
+
       let removeQuantityBtn = `<button id="remove-quantity-btn${i} " class="button1">-</button>`;
       let addQuantityBtn = `<button id="add-quantity-btn${i} " class="button2">+</button>`;
 
       article.innerHTML =
-        `<img src="${cartProducts.productImg}" alt="Image of ${cartProducts.name}">` +
+        `<img src="${cartProducts.img}" alt="Image of ${cartProducts.name}">` +
         `<h3>${cartProducts.name}</h3>` +
         `<p>Price: ${cartProducts.price}$</p>` +
         `<div class="button-div"> ${removeQuantityBtn} 
@@ -169,35 +177,58 @@ class ShoppingCart {
 
       shoppingCartBody.appendChild(article);
       //<Gör om till en funktion>
-      const addQuantityBtncMinus = article.querySelector(".button1");
-      const addQuantityBtncPlus = article.querySelector(".button2");
-      addQuantityBtncMinus.addEventListener("click", () => {});
-      addQuantityBtncPlus.addEventListener("click", () => {});
+      const quantityBtncMinus = article.querySelector(".button1");
+      const quantityBtncPlus = article.querySelector(".button2");
+      //loopa igenom till rätt produkt och lägg till fler av den produkten, det blir att anropa addToCart!
+
+      quantityBtncPlus.addEventListener("click", () => {
+        this.addToCart(
+          cartProducts.id,
+          cartProducts.name,
+          cartProducts.price,
+          cartProducts.img
+        );
+        this.saveCart();
+        this.showCart();
+      });
+      quantityBtncMinus.addEventListener("click", () => {
+        this.removeItemFromCart(cartProducts.id);
+        this.saveCartQuantity();
+        this.saveCart();
+        this.showCart();
+        console.log(cartProducts);
+        // let productInCart = this.cart.find(
+        //   (item) => item.id === cartProducts.id
+        // );
+        // if (productInCart) {
+        //   removeItem(cartProducts);
+        // }
+      });
       //</Gör om till en funktion>
     }
-    this.cartItemsNumber();
+    this.cartItemsQuantity();
   }
 
   saveCart() {
     localStorage.setItem("cart", JSON.stringify(this.cart));
   }
 
-  saveNumber() {
-    localStorage.setItem("cartQuantity", this.cartQuantity);
+  saveCartQuantity() {
+    localStorage.setItem("cartQuantity", JSON.stringify(this.cartQuantity));
   }
 
-  removeItem() {
-    this.cart;
-    this.cartItemsNumber();
-  }
-  cartItemsNumber() {
-    let cartItemsNumberInt = 0;
-    for (let i = 0; i < myCart.cart.length; i++) {
-      cartItemsNumberInt += myCart.cart[i].quantity;
+  // removeItem() {
+  //   this.cart;
+  //   this.cartItemsQuantity();
+  // }
+  cartItemsQuantity() {
+    let cartItemsQuantityInt = 0;
+    for (let i = 0; i < this.cart.length; i++) {
+      cartItemsQuantityInt += this.cart[i].quantity;
     }
-    console.log(cartItemsNumberInt);
-    this.cartQuantity = cartItemsNumberInt;
-    this.saveNumber();
+    console.log(cartItemsQuantityInt);
+    this.cartQuantity = cartItemsQuantityInt;
+    this.saveCartQuantity();
 
     let numberOfItems = document.getElementById("number-of-items");
     if (this.cartQuantity > 0) {
@@ -215,7 +246,7 @@ class ShoppingCart {
     localStorage.removeItem("cart");
     localStorage.clear();
     this.showCart();
-    this.cartItemsNumber();
+    this.cartItemsQuantity();
 
     //localStorage.removeItem("cart");
   }
@@ -239,4 +270,4 @@ openShoppingCartBtn.addEventListener("click", function () {
 /* ShoppingCart */
 
 // const nav = document.querySelector("nav");
-myCart.cartItemsNumber();
+myCart.cartItemsQuantity();
