@@ -39,6 +39,7 @@ const fetchedProducts = async () => {
     const fetchedProducts = await data.json();
     // console.log(fetchedProducts);
 
+    carouselImages(fetchedProducts.images);
     productsArrayRender(fetchedProducts.products);
   } catch (error) {
     console.log("Error" + error);
@@ -54,10 +55,10 @@ function productsArrayRender(items) {
     //
     let article = document.createElement("article");
     article.innerHTML =
+      `<img src="${items[i].thumbnail}" alt="Image of ${items[i].title}">` +
       `<h3>${items[i].title}</h3>` +
-      `<p>Price: ${items[i].price}$</p>` +
-      `<p>Rating: ${items[i].rating}</p>` +
-      `<img src="${items[i].thumbnail}" alt="Image of ${items[i].title}">`;
+      `<p> <span>${items[i].price}$</span></p>` +
+      `<p>Rating: ${items[i].rating}</p>`;
 
     articleContainer.appendChild(article);
     //
@@ -162,16 +163,17 @@ class ShoppingCart {
       let cartProducts = this.cart[i];
       console.log(cartProducts);
       let article = document.createElement("article");
-
+      let sum = cartProducts.price * cartProducts.quantity;
       let removeQuantityBtn = `<button id="remove-quantity-btn${i} " class="button1">-</button>`;
       let addQuantityBtn = `<button id="add-quantity-btn${i} " class="button2">+</button>`;
 
       article.innerHTML =
         `<img src="${cartProducts.img}" alt="Image of ${cartProducts.name}">` +
-        `<h3>${cartProducts.name}</h3>` +
-        `<p>Price: ${cartProducts.price}$</p>` +
+        `<h3 class="cart-product-title">${cartProducts.name}</h3>` +
+        `<p><span class="cart-product-price">Price:</span> ${cartProducts.price}$</p>` +
         `<div class="button-div"> ${removeQuantityBtn} 
-        <p>  ${cartProducts.quantity}</p> ${addQuantityBtn}</div>`;
+        <p class="quantity-button">  ${cartProducts.quantity}</p> ${addQuantityBtn}</div>` +
+        `<span class="sum">$${sum}</span>`;
 
       article.setAttribute("class", "cart-article");
 
@@ -271,3 +273,19 @@ openShoppingCartBtn.addEventListener("click", function () {
 
 // const nav = document.querySelector("nav");
 myCart.cartItemsQuantity();
+
+//< carousel>
+function carouselImages(images) {
+  const carouselImgArray = Array.from(
+    document.querySelectorAll("carousel-img")
+  );
+
+  for (let i = 0; i < images.length; i++) {
+    let currentImage = images[i];
+    let currentCarouselImage = carouselImgArray[i];
+
+    currentCarouselImage.setAttribute("src", `${currentImage}`);
+  }
+}
+
+//</carousel>
