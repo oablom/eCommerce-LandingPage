@@ -129,6 +129,7 @@ footer .copyright-container {
 .waves {
   position: fixed;
   left: 0%;
+
   height: 100%;
   width: 100vw;
   transform: translateY(-100px);
@@ -183,5 +184,14 @@ svg path:nth-child(4) {
     d: path(
       "M0,192	C220,100,440,100,660,192 C880,290,1100,290,1320,192	L1320 500 L0 500"
     );
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .waves * {
+    min-width: 130vw;
+  }
+  ul.socialmedia-icons {
+    transform: translateY(30px);
   }
 }

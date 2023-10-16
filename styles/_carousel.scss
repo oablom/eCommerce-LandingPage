@@ -1,0 +1,36 @@
+.carousel-item {
+  background-color: none;
+  max-height: 350px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+  img {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+#sale-campaign-carousel {
+  z-index: 0;
+  font-size: 40px;
+
+  * {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: white;
+  }
+}
+
+// .carousel.slide img {
+//   max-width: 400px;
+//   border-radius: 10px;
+// }
+
+// .carousel-item.active {
+//   display: flex;
+//   justify-content: center;
+// }
+
+// @media screen and (max-width: 340px) {
+//   #sale-campaign-carousel {
+//     display: none;
+//   }
+// }

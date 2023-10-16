@@ -30,8 +30,39 @@ hamburger.addEventListener("click", () => {
 // const productsUrl =
 const productsUrl = "https://dummyjson.com/products";
 // const productsUrl = "https://api.escuelajs.co/api/v1/products";
+const unsplashAPIKey = "JAYn5vNnZA-k-VFGUb-rVtipEVQQgYXW3dxiM1C-syM";
+const unsplashURL = `https://api.unsplash.com/search/photos?query=electronics&client_id=${unsplashAPIKey}`;
 
 let productsArray = [];
+
+const fetchedCarousellImages = async () => {
+  try {
+    const data = await fetch(unsplashURL);
+    const fetchedCImages = await data.json();
+    console.log("Unsplash Response:", fetchedCImages);
+    carouselImages(fetchedCImages);
+  } catch (error) {
+    console.log("Error" + error);
+  }
+};
+fetchedCarousellImages();
+
+function carouselImages(images) {
+  const carouselImgArray = Array.from(
+    document.querySelectorAll(".d-block.w-100")
+  );
+  const imgLimit = Math.min(images.results.length, carouselImgArray.length);
+
+  for (let i = 0; i < imgLimit; i++) {
+    let randomImageInt = Math.floor(Math.random() * images.results.length);
+    let currentImage = images.results[randomImageInt].urls.regular;
+    let currentCarouselImage = carouselImgArray[i];
+    console.log(currentImage);
+    console.log("Hej");
+
+    currentCarouselImage.setAttribute("src", `${currentImage}`);
+  }
+}
 
 const fetchedProducts = async () => {
   try {
@@ -39,7 +70,8 @@ const fetchedProducts = async () => {
     const fetchedProducts = await data.json();
     // console.log(fetchedProducts);
 
-    carouselImages(fetchedProducts.images);
+    // carouselImages(fetchedProducts.products);
+
     productsArrayRender(fetchedProducts.products);
   } catch (error) {
     console.log("Error" + error);
@@ -97,7 +129,7 @@ function articleEventListener() {
       document.getElementById("productModalLabel").textContent =
         currentArticle.name;
       document.querySelector("#productModal .modal-body").innerHTML =
-        `<p>Description: ${currentArticle.description}</p>` +
+        `<p>${currentArticle.description}</p>` +
         `<p>Price: ${currentArticle.price}$</p>` +
         `<p>Rating: ${currentArticle.rating}</p>` +
         `<img src="${currentArticle.img}" alt="Image of ${currentArticle.name}">`;
@@ -233,7 +265,9 @@ class ShoppingCart {
     this.saveCartQuantity();
 
     let numberOfItems = document.getElementById("number-of-items");
-    if (this.cartQuantity > 0) {
+    if (this.cartQuantity > 0 && this.cartQuantity < 9) {
+      numberOfItems.innerHTML = `\u00A0\u00A0${this.cartQuantity}`;
+    } else if (this.cartQuantity > 9) {
       numberOfItems.innerHTML = this.cartQuantity;
     } else {
       numberOfItems.innerHTML = "";
@@ -273,19 +307,3 @@ openShoppingCartBtn.addEventListener("click", function () {
 
 // const nav = document.querySelector("nav");
 myCart.cartItemsQuantity();
-
-//< carousel>
-function carouselImages(images) {
-  const carouselImgArray = Array.from(
-    document.querySelectorAll("carousel-img")
-  );
-
-  for (let i = 0; i < images.length; i++) {
-    let currentImage = images[i];
-    let currentCarouselImage = carouselImgArray[i];
-
-    currentCarouselImage.setAttribute("src", `${currentImage}`);
-  }
-}
-
-//</carousel>
