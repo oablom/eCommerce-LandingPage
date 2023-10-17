@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abel&family=Exo+2:wght@400;600;700&display=swap");
+
 @import "navbar";
 @import "shoppingCart";
 @import "footer";
@@ -8,10 +11,18 @@
   color: #004099;
   text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.7);
   padding: 0;
-  font-family: "Lucida Sans Unicode", sans-serif;
+  font-family: "Abel", sans-serif;
+  font-weight: 600;
 }
 
 // body {
+// }
+// @media screen and (max-width: 768px) {
+//   main :nth-child(2),
+//   #article-container {
+//     transform: translateY(50px);
+//     padding-bottom: 50px;
+//   }
 // }
 
 main {
@@ -20,7 +31,9 @@ main {
 
   i {
     position: fixed;
-
+    animation-duration: 1s;
+    animation-name: rotate;
+    animation-iteration-count: initial;
     transform: scale(4);
     height: 20px;
     width: 16px;
@@ -29,7 +42,16 @@ main {
     bottom: 25%;
     z-index: 2;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    cursor: pointer;
+    &:hover {
+      transition: 0.2s ease;
+      transform: scale(5) translateY(-5px);
+    }
+
     #number-of-items {
+      animation-duration: 3s;
+      animation-name: enlarge;
+      animation-iteration-count: initial;
       color: white;
       transform: translate(8px, -12px);
       background-color: rgba(0, 0, 128, 0.8);
@@ -38,6 +60,29 @@ main {
       font-size: 6px;
       z-index: 3;
     }
+  }
+}
+
+@keyframes enlarge {
+  from {
+    background-color: green;
+
+    to {
+      background-color: black;
+    }
+  }
+}
+@keyframes rotate {
+  from {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: scale(8);
+  }
+
+  to {
+    transform: rotate(360deg);
+    transform: scale(4);
   }
 }
 
@@ -95,7 +140,7 @@ main {
   color: #004099;
   text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.7);
   border-radius: 15px;
-
+  font-weight: bold;
   padding: 10px;
 }
 
@@ -105,6 +150,7 @@ main {
   color: #004099;
   text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.7);
   font-size: 18px;
+  z-index: 5;
 
   button {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -136,6 +182,9 @@ main {
   main i {
     right: 10%;
   }
+  // div.form {
+  //   display: none;
+  // }
 }
 
 // .modal-svg rect {

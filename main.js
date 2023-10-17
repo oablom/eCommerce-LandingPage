@@ -16,7 +16,6 @@ Använd localstorage for att lägga till och ta bort
 
 //filter som filtrerar kategorier
 
-//<navbar>
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
 const links = document.querySelectorAll(".nav-links li");
@@ -24,7 +23,6 @@ const links = document.querySelectorAll(".nav-links li");
 hamburger.addEventListener("click", () => {
   navLinks.classList.toggle("open");
 });
-//</navbar>
 
 // const productsUrl = "https://fakestoreapi.com/products";
 // const productsUrl =
@@ -56,11 +54,13 @@ function carouselImages(images) {
   for (let i = 0; i < imgLimit; i++) {
     let randomImageInt = Math.floor(Math.random() * images.results.length);
     let currentImage = images.results[randomImageInt].urls.regular;
+    let currentImageTitle = images.results[randomImageInt].description;
     let currentCarouselImage = carouselImgArray[i];
     console.log(currentImage);
     console.log("Hej");
 
     currentCarouselImage.setAttribute("src", `${currentImage}`);
+    currentCarouselImage.setAttribute("alt", `${currentImageTitle}`);
   }
 }
 
@@ -202,7 +202,7 @@ class ShoppingCart {
       article.innerHTML =
         `<img src="${cartProducts.img}" alt="Image of ${cartProducts.name}">` +
         `<h3 class="cart-product-title">${cartProducts.name}</h3>` +
-        `<p><span class="cart-product-price">Price:</span> ${cartProducts.price}$</p>` +
+        `<p><span class="cart-product-price">Price:\u00A0</span> ${cartProducts.price}$</p>` +
         `<div class="button-div"> ${removeQuantityBtn} 
         <p class="quantity-button">  ${cartProducts.quantity}</p> ${addQuantityBtn}</div>` +
         `<span class="sum">$${sum}</span>`;
@@ -240,6 +240,7 @@ class ShoppingCart {
       });
       //</Gör om till en funktion>
     }
+    // <div class="total-sum">Total:</div>
     this.cartItemsQuantity();
   }
 
@@ -265,12 +266,15 @@ class ShoppingCart {
     this.saveCartQuantity();
 
     let numberOfItems = document.getElementById("number-of-items");
-    if (this.cartQuantity > 0 && this.cartQuantity < 9) {
-      numberOfItems.innerHTML = `\u00A0\u00A0${this.cartQuantity}`;
+    if (this.cartQuantity > 0 && this.cartQuantity <= 9) {
+      numberOfItems.innerHTML = `\u00A0\u00A0\u00A0${this.cartQuantity}`;
+      openShoppingCartBtn.setAttribute("style", "display: block");
     } else if (this.cartQuantity > 9) {
-      numberOfItems.innerHTML = this.cartQuantity;
+      numberOfItems.innerHTML = `\u00A0\u00A0${this.cartQuantity}`;
+      openShoppingCartBtn.setAttribute("style", "display: block");
     } else {
       numberOfItems.innerHTML = "";
+      openShoppingCartBtn.setAttribute("style", "display: none");
     }
     openShoppingCartBtn.appendChild(numberOfItems);
     console.log(this.cartQuantity);
@@ -307,3 +311,26 @@ openShoppingCartBtn.addEventListener("click", function () {
 
 // const nav = document.querySelector("nav");
 myCart.cartItemsQuantity();
+
+const searchInput = document.getElementById("search-input");
+
+searchInput.addEventListener("input", function () {
+  filterProducts(searchInput.value.toLowerCase());
+});
+
+function filterProducts(input) {
+  const articles = Array.from(document.querySelectorAll(".article"));
+
+  const matchingTitle = articles.filter((article) => {
+    const title = article.getAttribute("data-title").toLowerCase();
+    return title.includes(input);
+  });
+
+  articles.forEach((article) => {
+    article.style.display = "none";
+  });
+
+  matchingTitle.forEach((matchingArticle) => {
+    matchingArticle.style.display = "block";
+  });
+}

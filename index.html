@@ -19,10 +19,26 @@
     <link rel="stylesheet" href="styles/style.css" />
 
     <link rel="stylesheet" href="/styles/normalize.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
   </head>
 
   <body>
     <header>
+      <div class="col-md-6">
+        <div class="form">
+          <i class="fa fa-search"></i>
+          <input
+            id="search-input"
+            type="text"
+            class="form-control form-input"
+            placeholder="Search for products :)"
+          />
+          <span class="left-pan"><i class="fa fa-microphone"></i></span>
+        </div>
+      </div>
       <nav>
         <div class="hamburger">
           <div class="line"></div>
@@ -47,19 +63,20 @@
           <i class="fas fa-search"></i>
         </span>
       </div>
-      <section class="logo">
+      <div class="logo">
         <img src="/images/logo-no-background.jpg" alt="VersaStore: logo" />
-      </section>
+      </div>
     </header>
     <main>
       <i
         id="openShoppingCartBtn"
-        type="button"
         class="bi bi-cart"
         data-bs-toggle="modal"
         data-bs-target="#shoppingCartModal"
-        ><p id="number-of-items"></p>
+      >
       </i>
+      <p id="number-of-items"></p>
+
       <div
         id="sale-campaign-carousel"
         class="carousel slide"
@@ -170,9 +187,11 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div id="modal-body-item1" class="modal-body">
               <p>Your shopping cart is empty!</p>
             </div>
+
             <div class="modal-footer">
               <button
                 type="button"
@@ -180,13 +199,13 @@
                 data-bs-dismiss="modal"
               >
                 Close
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  id="clearLocalStorage"
-                >
-                  Clear cart
-                </button>
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                id="clearLocalStorage"
+              >
+                Clear cart
               </button>
               <button type="button" class="btn btn-primary">Checkout</button>
             </div>
@@ -226,24 +245,7 @@
               >
                 Close
               </button>
-              <a
-                href="https://www.facebook.com/your_page_name_here"
-                target="_blank"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a
-                href="https://www.twitter.com/your_username_here"
-                target="_blank"
-              >
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a
-                href="https://www.instagram.com/your_username_here"
-                target="_blank"
-              >
-                <i class="fab fa-instagram"></i>
-              </a>
+
               <button type="button" id="addToCartBtn" class="btn btn-primary">
                 Add to cart
               </button>
@@ -275,7 +277,7 @@
     L1320 500
     L0 500
     "
-            fill="#D7E5CA"
+            fill="#FFE5B4"
           />
           <path
             fill-opacity="0.95"
@@ -286,7 +288,7 @@
     L1320 500
     L0 500
     "
-            fill="#F9F3CC"
+            fill="#FF7F50"
           />
           <path
             fill-opacity="1"
@@ -308,7 +310,7 @@
         <div class="wave" id="wave3"></div>
         <div class="wave" id="wave4"></div>
       </div> -->
-      <article class="footer-content">
+      <section class="footer-content">
         <div class="media-menu">
           <ul class="socialmedia-icons">
             <li>
@@ -358,7 +360,7 @@
             reserved.
           </p>
         </div>
-      </article>
+      </section>
     </footer>
 
     <script src="main.js"></script>

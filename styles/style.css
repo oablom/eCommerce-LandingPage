@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abel&family=Exo+2:wght@400;600;700&display=swap");
 @media screen and (min-width: 768px) {
   nav {
     min-height: 110px;
@@ -54,6 +56,7 @@ header .logo img {
 .nav-links li a {
   text-decoration: none;
   font-size: 22px;
+  font-family: "Abel", sans-serif;
 }
 
 .landing {
@@ -131,10 +134,53 @@ header .logo img {
     transition-delay: 0.6s ease;
   }
 }
+.form {
+  position: fixed;
+  top: 3%;
+  right: 10%;
+  z-index: 10;
+  width: 40vw;
+}
+
+.form .fa-search {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #9ca3af;
+}
+
+.form span {
+  position: absolute;
+  right: 17px;
+  top: 13px;
+  padding: 2px;
+  border-left: 1px solid #d1d5db;
+}
+
+.left-pan {
+  padding-left: 7px;
+}
+
+.left-pan i {
+  padding-left: 10px;
+}
+
+.form-input {
+  height: 55px;
+  text-indent: 33px;
+  border-radius: 10px;
+}
+
+.form-input:focus {
+  box-shadow: none;
+  border: none;
+}
+
 .cart-article {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 90% 10%;
   grid-gap: 20px;
   margin-bottom: 20px;
 }
@@ -182,11 +228,15 @@ header .logo img {
 }
 .cart-article .cart-product-title {
   grid-column: 5/span 2;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 1000px) {
   .cart-product-title {
     font-size: 18px;
+  }
+  .cart-product-price {
+    display: none;
   }
 }
 @media screen and (max-width: 526px) {
@@ -200,7 +250,18 @@ header .logo img {
   .cart-article p .cart-product-price {
     display: none;
   }
+  .cart-article .button-div :nth-child(1) {
+    transform: translate(10px, -10px);
+  }
 }
+.modal-content {
+  position: relative;
+}
+
+.total-sum {
+  grid-row-start: 2;
+}
+
 footer {
   position: fixed;
   width: 100%;
@@ -272,6 +333,7 @@ footer .footer-content .menu li a {
 .socialmedia-icons li,
 .menu li {
   list-style: none;
+  z-index: 0;
 }
 .socialmedia-icons li :hover,
 .menu li :hover {
@@ -380,7 +442,8 @@ svg path:nth-child(4) {
   color: #004099;
   text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.7);
   padding: 0;
-  font-family: "Lucida Sans Unicode", sans-serif;
+  font-family: "Abel", sans-serif;
+  font-weight: 600;
 }
 
 main {
@@ -389,6 +452,9 @@ main {
 }
 main i {
   position: fixed;
+  animation-duration: 1s;
+  animation-name: rotate;
+  animation-iteration-count: initial;
   transform: scale(4);
   height: 20px;
   width: 16px;
@@ -397,8 +463,16 @@ main i {
   bottom: 25%;
   z-index: 2;
   text-shadow: 2px 2px 4px rgb(0, 0, 0);
+  cursor: pointer;
+}
+main i:hover {
+  transition: 0.2s ease;
+  transform: scale(5) translateY(-5px);
 }
 main i #number-of-items {
+  animation-duration: 3s;
+  animation-name: enlarge;
+  animation-iteration-count: initial;
   color: white;
   transform: translate(8px, -12px);
   background-color: rgba(0, 0, 128, 0.8);
@@ -408,6 +482,26 @@ main i #number-of-items {
   z-index: 3;
 }
 
+@keyframes enlarge {
+  from {
+    background-color: green;
+    to {
+      background-color: black;
+    }
+  }
+}
+@keyframes rotate {
+  from {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: scale(8);
+  }
+  to {
+    transform: rotate(360deg);
+    transform: scale(4);
+  }
+}
 #article-container {
   display: flex;
   justify-content: center;
@@ -454,6 +548,7 @@ main i #number-of-items {
   color: #004099;
   text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.7);
   border-radius: 15px;
+  font-weight: bold;
   padding: 10px;
 }
 
@@ -463,6 +558,7 @@ main i #number-of-items {
   color: #004099;
   text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.7);
   font-size: 18px;
+  z-index: 5;
 }
 .modal-content button {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
