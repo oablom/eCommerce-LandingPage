@@ -71,7 +71,7 @@ const fetchedProducts = async () => {
     // console.log(fetchedProducts);
 
     // carouselImages(fetchedProducts.products);
-
+    productsArray = fetchedProducts.products;
     productsArrayRender(fetchedProducts.products);
   } catch (error) {
     console.log("Error" + error);
@@ -334,3 +334,26 @@ function filterProducts(input) {
     matchingArticle.style.display = "block";
   });
 }
+
+function sortProductsByPrice(order) {
+  if (order === "rising") {
+    productsArray.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+    console.log("rising", productsArray);
+  } else if (order === "falling") {
+    productsArray.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+    console.log("falling", productsArray);
+  }
+  let articleContainer = document.getElementById("article-container");
+  articleContainer.innerHTML = "";
+
+  productsArrayRender(productsArray);
+}
+
+document.getElementById("sort-options").addEventListener("change", function () {
+  const value = this.value;
+  if (value === "price-rising") {
+    sortProductsByPrice("rising");
+  } else {
+    sortProductsByPrice("falling");
+  }
+});

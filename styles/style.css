@@ -446,6 +446,10 @@ svg path:nth-child(4) {
   font-weight: 600;
 }
 
+body {
+  background-color: #d2e0fb;
+}
+
 main {
   padding-top: 15vh;
   background-color: #d2e0fb;
@@ -502,11 +506,27 @@ main i #number-of-items {
     transform: scale(4);
   }
 }
+.sort-options {
+  margin-top: 20px;
+  position: absolute;
+  right: 80%;
+  left: 20%;
+  width: 10%;
+  min-width: 200px;
+  height: 5%;
+  padding: 2px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding-left: 5px;
+}
+
 #article-container {
   display: flex;
   justify-content: center;
   gap: 60px;
   padding: 20px 3% 20px 3%;
+  margin-bottom: 200px;
+  margin-top: 90px;
   flex-wrap: wrap;
 }
 
@@ -586,5 +606,8 @@ main i #number-of-items {
 @media screen and (max-width: 768px) {
   main i {
     right: 10%;
+  }
+  header .form {
+    display: none;
   }
 }/*# sourceMappingURL=style.css.map */
