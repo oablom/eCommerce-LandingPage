@@ -537,10 +537,11 @@ main i #number-of-items {
   }
 }
 .article {
-  background-color: #d1e0ff;
+  background-color: #e1efff;
   border-radius: 20px;
   width: 300px;
   height: 100%;
+  padding-bottom: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: hidden;
   cursor: pointer;
@@ -551,7 +552,9 @@ main i #number-of-items {
 }
 .article p {
   font-size: 18px;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 5px;
 }
 .article:hover {
   transform: scale(1.1);
@@ -570,7 +573,10 @@ main i #number-of-items {
   text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.7);
   border-radius: 15px;
   font-weight: bold;
-  padding: 10px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 8px;
 }
 
 .modal-content {
